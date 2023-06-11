@@ -1,57 +1,43 @@
 import { useContext } from "react";
 import UsersContext from "../../Context/UsersContext";
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+import CardAux from "./CardAux";
+import { Typography } from '@mui/material';
+import Container from '@mui/material/Container';
 
 const Cards = () => {
-    const { player1, player2 } = useContext(UsersContext);
+    const { player1, player2, deckofcard, deckofcard2 } = useContext(UsersContext);
     console.log(player1);
     console.log(player2);
+
+    const firstTenCards = deckofcard.slice(0, 10);
+    const firstTenCards2 = deckofcard2.slice(0, 10);
+
   return (
-    <div>
+    <Container maxWidth="xl">
+         <Typography variant="h3" component="h3" sx={{ display: 'flex', justifyContent: 'center'}}>
+            {player1}
+        </Typography>
         <Grid container spacing={2} columns={20}>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
-            <Grid item xs={2}>
-                <Item>xs=8</Item>
-            </Grid>
+            {firstTenCards.map((card, index) => (
+                <Grid item xs={2} key={index}>
+				    <CardAux url ={card.image}/>
+                </Grid>
+			))}
         </Grid>
-    </div>
+        <br/>
+        <Typography variant="h3" component="h3" sx={{ display: 'flex', justifyContent: 'center'}}>
+            {player2}
+        </Typography>
+        <Grid container spacing={2} columns={20}>
+            {firstTenCards2.map((card, index) => (
+                <Grid item xs={2} key={index}>
+				    <CardAux url ={card.image}/>
+                </Grid>
+			))}
+        </Grid>
+    </Container>
   )
 }
 
-export default Cards
+export default Cards;
