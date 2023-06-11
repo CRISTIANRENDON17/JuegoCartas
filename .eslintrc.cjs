@@ -13,6 +13,7 @@ module.exports = {
 		'plugin:react/jsx-runtime',
 		'standard',
 		'eslint-config-prettier',
+		'eslint-disable-next-line react/prop-types'
 	],
 	overrides: [],
 	parserOptions: {

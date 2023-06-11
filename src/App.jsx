@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { UsersProvider } from "./Context/UsersContext.jsx"
 import Login from "./Modules/Login/Login.jsx"
-import Cards from "./Modules/Cards/Cards.jsx"
+import Game from "./Modules/Game/Game.jsx"
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Login/>} />
             <Route path='/Login' element={<Login/>} />
-            <Route path='/Cards' element={<Cards/>} />
+            <Route path='/Cards' element={<Game/>} />
           </Routes>
         </UsersProvider>
       </BrowserRouter>
