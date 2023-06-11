@@ -8,28 +8,26 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
-    const { player1, setPlayer1, setPlayer2, player2 } = useContext(UsersContext);
+    const { players, setPlayers } = useContext(UsersContext);
     const navigate = useNavigate();
     const handleStart = () => {
-        if(player1 === '')
-        {
-            setPlayer1('Player1')
-        }
-        if(player2 === '')
-        {
-            setPlayer2('Player2')
-        }
-        console.log('Player1:', player1);
-        console.log('Player2:', player2);
+        if (players.name === '' || players.name === undefined) {
+            setPlayers((prevPlayers) => ({ ...prevPlayers, name: 'Player1' }));
+          }
+          if (players.name2 === '' || players.name2 === undefined ) {
+            setPlayers((prevPlayers) => ({ ...prevPlayers, name2: 'Player2' }));
+          }
+          console.log('Player1:', players.name);
+          console.log('Player2:', players.name2);
         navigate('/Cards', { replace: true });
       };
     
       const handlePlayer1Change = (event) => {
-        setPlayer1(event.target.value);
+        setPlayers((prevPlayers) => ({ ...prevPlayers, name: event.target.value }));
       };
     
       const handlePlayer2Change = (event) => {
-        setPlayer2(event.target.value);
+        setPlayers((prevPlayers) => ({ ...prevPlayers, name2: event.target.value }));
       };
 
 	return (
@@ -56,14 +54,14 @@ const Login = () => {
                         id="Player1"
                         label="Player1"
                         variant="outlined"
-                        value={player1}
+                        value={players.name}
                         onChange={handlePlayer1Change}
                     />
                     <TextField  
                          id="Player2"
                          label="Player2"
                          variant="outlined"
-                         value={player2}
+                         value={players.name2}
                          onChange={handlePlayer2Change}
                     />
                 </Box>
