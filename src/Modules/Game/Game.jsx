@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import UsersContext from "../../Context/UsersContext";
 import Cards from "../Cards/Cards";
+import { useNavigate } from "react-router-dom";
 
 const Game = () => {
-    const { players, deckofcard, deckofcard2, deckofcardUse, deckofcardUse2 } = useContext(UsersContext);
-
+    const { players, deckofcard, deckofcard2, deckofcardUse, deckofcardUse2, setWin } = useContext(UsersContext);
+    const navigate = useNavigate();
     const [playerOn, setPlayerOn] = useState(players.name);
     const [count, setCount] = useState({ count1: 9, count2: 9 });
     const [newCart,setNewCart] = useState({url:'',code:''});
-
+   
     useEffect(() => {
         let arrayCards;
         let playerCount;
@@ -23,7 +24,7 @@ const Game = () => {
             playerCount = count.count2;
         }
 
-        console.log('Name: '+playerOn);
+        console.log('Name: '+ playerOn);
         console.log(arrayCards);
         console.log('codigos: '+auxdeckofcardUse);
         console.log(playerCount);
@@ -67,6 +68,8 @@ const Game = () => {
                 
                 if (caracteresRepetidos.length === 2) {
                     console.log(`Los caracteres '${caracteresRepetidos[0]}' y '${caracteresRepetidos[1]}' se repiten 3 veces.`);
+                    setWin({ win: true, name: playerOn });
+                    navigate('/WinPage', { replace: true });
                 } else if (caracteresRepetidos.length === 1) {
                     console.log(`El carácter '${caracteresRepetidos[0]}' se repite 3 veces.`);
                 } else {
@@ -75,12 +78,12 @@ const Game = () => {
             } else {
                 console.log('No se encontró ningún carácter que se repita 4 veces.');
             }
-
+        }else{
+            navigate('/WinPage', { replace: true });
         }
+  
     }, [playerOn]);
 
-
-      
     return (
         <div>
             <Cards

@@ -10,7 +10,7 @@ const UsersProvider = ({ children }) => {
 	const [deckofcard2, setDeckofcard2] = useState([]);
 	const [deckofcardUse, setDeckofcardUse] = useState([]);
 	const [deckofcardUse2, setDeckofcardUse2] = useState([]);
-
+    const [win, setWin] = useState({win:false,name:'Empate'});
 	useEffect(() => {
 		const query = async () => {
 			const url = `https://deckofcardsapi.com/api/deck/new/draw/?count=52`;
@@ -30,7 +30,18 @@ const UsersProvider = ({ children }) => {
 		query();	
 	},[]);
 
-	const data = { players, setPlayers,  deckofcard, deckofcard2, deckofcardUse, deckofcardUse2, setDeckofcardUse, setDeckofcardUse2}
+	const data = { 
+		players, 
+		setPlayers,  
+		deckofcard, 
+		deckofcard2, 
+		deckofcardUse, 
+		deckofcardUse2, 
+		setDeckofcardUse, 
+		setDeckofcardUse2,
+		win, 
+		setWin,
+	}
 
 	return (
 		<UsersContext.Provider value={data}>{children}</UsersContext.Provider>

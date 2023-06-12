@@ -50,13 +50,13 @@ const CardAux = ({url, code, edit, NewCode, NewUrl, playerOn, setPlayerOn, playe
   return (
     <Card>
         <CardActionArea>
-            <CardMedia
-            component="img"
-            value = {codeAux}
-            image={urlAux}
-            alt="Card Image"
-            onClick={handleChange}
-            />
+          <CardMedia
+          component="img"
+          value = {codeAux}
+          image={urlAux}
+          alt="Card Image"
+          onClick={handleChange}
+          />
         </CardActionArea>
     </Card>
   )
