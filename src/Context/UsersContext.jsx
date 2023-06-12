@@ -31,8 +31,7 @@ const UsersProvider = ({ children }) => {
 	},[]);
 
 	const data = { players, setPlayers,  deckofcard, deckofcard2, deckofcardUse, deckofcardUse2, setDeckofcardUse, setDeckofcardUse2}
-	console.log(deckofcard);
-	console.log(deckofcard2);
+
 	return (
 		<UsersContext.Provider value={data}>{children}</UsersContext.Provider>
 	);

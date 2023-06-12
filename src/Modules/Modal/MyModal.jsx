@@ -1,9 +1,18 @@
-import { Box, Button, Modal } from '@mui/material';
+import { Box, Button, Modal, Typography } from '@mui/material';
 import { useState } from 'react';
 import CardAux from '../Cards/CardAux';
 
-const MyModal = () => {
+const MyModal = ({setPlayerOn, players, playerOn, code, url}) => {
   const [open, setOpen] = useState(false);
+
+  const handlePassTurn = () =>{
+    if(playerOn === players.name){
+      setPlayerOn(players.name2);
+    }else{
+      setPlayerOn(players.name);
+    }
+    setOpen(false);
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -12,6 +21,7 @@ const MyModal = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  console.log(url)
 
   return (
     <div>
@@ -40,11 +50,18 @@ const MyModal = () => {
             gap: '16px',
           }}
         >
-          <h2 id="simple-modal-title">Título del modal</h2>
-          <CardAux url={"https://deckofcardsapi.com/static/img/6D.svg"} />
-          <Button variant="contained" color="secondary" onClick={handleClose}>
-            Cerrar modal
-          </Button>
+          <Typography variant="h5" component="h5" sx={{ display: 'flex', justifyContent: 'center', mt: 4, fontFamily: 'Arial', fontWeight: 'bold'}}>
+            Player: {` ${playerOn}`}
+          </Typography>
+          <CardAux url={url}  code = {code}  edit = {false}/>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+            <Button variant="contained" color="secondary" onClick={handlePassTurn}>
+              Pass turn
+            </Button>
+            <Button variant="contained" color="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </div>

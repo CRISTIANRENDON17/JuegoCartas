@@ -17,8 +17,6 @@ const Login = () => {
           if (players.name2 === '' || players.name2 === undefined ) {
             setPlayers((prevPlayers) => ({ ...prevPlayers, name2: 'Player2' }));
           }
-          console.log('Player1:', players.name);
-          console.log('Player2:', players.name2);
         navigate('/Cards', { replace: true });
       };
     
