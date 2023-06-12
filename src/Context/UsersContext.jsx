@@ -5,11 +5,11 @@ const UsersContext = createContext();
 
 const UsersProvider = ({ children }) => {
 
-	const [players, setPlayers] = useState({name:''},{name2:''});
-	const [deckofcard, setDeckofcard] = useState(null);
-	const [deckofcard2, setDeckofcard2] = useState(null);
-	const [deckofcardUse, setDeckofcardUse] = useState(null);
-	const [deckofcardUse2, setDeckofcardUse2] = useState(null);
+	const [players, setPlayers] = useState({name:'', name2:''});
+	const [deckofcard, setDeckofcard] = useState([]);
+	const [deckofcard2, setDeckofcard2] = useState([]);
+	const [deckofcardUse, setDeckofcardUse] = useState([]);
+	const [deckofcardUse2, setDeckofcardUse2] = useState([]);
 
 	useEffect(() => {
 		const query = async () => {

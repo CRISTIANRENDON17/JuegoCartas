@@ -15,7 +15,7 @@ const CardAux = ({url, code, edit, NewCode, NewUrl, playerOn, setPlayerOn, playe
     if(playerOn === players.name){
       const newArray = [...deckofcardUse];
       for(let i = 0; i < 10 ; i++){
-        if(newArray[i] === code){
+        if(newArray[i] === codeAux){
           newArray[i] = NewCode;
         }
       }
@@ -25,7 +25,7 @@ const CardAux = ({url, code, edit, NewCode, NewUrl, playerOn, setPlayerOn, playe
     }else{
       const newArray2 = [...deckofcardUse2];
       for(let i = 0; i < 10 ; i++){
-        if(newArray2[i] === code){
+        if(newArray2[i] === codeAux){
           newArray2[i] = NewCode;
         }
       }
@@ -34,20 +34,10 @@ const CardAux = ({url, code, edit, NewCode, NewUrl, playerOn, setPlayerOn, playe
       setPlayerOn(players.name);
     }
   }
-  const Remplace = () =>{
-    const array = [...arrayAux]
-    for(let i = 0; i < 10 ; i++){
-      if(array[i] === code){
-        array[i] = NewCode;
-      }
-    }
-    setArrayAux(array);
-  }
 
   const handleChange = () =>{
     console.log(code);
     if(edit === true){
-     
       console.log("se edito")
       setCodeAux(NewCode);
       setUrlAux(NewUrl);
@@ -58,17 +48,17 @@ const CardAux = ({url, code, edit, NewCode, NewUrl, playerOn, setPlayerOn, playe
   }
 
   return (
-        <Card>
-            <CardActionArea>
-                <CardMedia
-                component="img"
-                value = {codeAux}
-                image={urlAux}
-                alt="Card Image"
-                onClick={handleChange}
-                />
-            </CardActionArea>
-        </Card>
+    <Card>
+        <CardActionArea>
+            <CardMedia
+            component="img"
+            value = {codeAux}
+            image={urlAux}
+            alt="Card Image"
+            onClick={handleChange}
+            />
+        </CardActionArea>
+    </Card>
   )
 }
 

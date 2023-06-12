@@ -2,7 +2,8 @@ import { Box, Button, Modal, Typography } from '@mui/material';
 import { useState } from 'react';
 import CardAux from '../Cards/CardAux';
 
-const MyModal = ({setPlayerOn, players, playerOn, code, url}) => {
+const MyModal = ({playerOn, setPlayerOn, players, code, url}) => {
+  
   const [open, setOpen] = useState(false);
 
   const handlePassTurn = () =>{
@@ -11,7 +12,7 @@ const MyModal = ({setPlayerOn, players, playerOn, code, url}) => {
     }else{
       setPlayerOn(players.name);
     }
-    setOpen(false);
+    handleClose();
   }
 
   const handleOpen = () => {

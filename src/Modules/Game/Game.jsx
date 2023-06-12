@@ -28,7 +28,7 @@ const Game = () => {
         console.log('codigos: '+auxdeckofcardUse);
         console.log(playerCount);
 
-        if(playerCount < 52){
+        if(playerCount < 51){
             playerCount++;
             console.log('code new: '+arrayCards[playerCount].code+'  pos: '+playerCount)
             setNewCart({url:arrayCards[playerCount].image,code:arrayCards[playerCount].code}); 
@@ -38,12 +38,49 @@ const Game = () => {
                 setCount((countData) => ({ ...countData, count2:  playerCount}))
             }
             
+            // Ejemplo de uso
+            //const codigos = ['6H', '0D', 'KS', '6S', '0H', 'KD', '6D', 'KH', '0S','6C'];
+
+            //validarTernasCuarta(auxdeckofcardUse,playerOn);
+            const primerosCaracteres = auxdeckofcardUse.map(codigo => codigo[0]);
+
+            // Contar las ocurrencias de cada carácter
+            const ocurrencias = primerosCaracteres.reduce((count, caracter) => {
+                count[caracter] = (count[caracter] || 0) + 1;
+                return count;
+            }, {});
+
+            // Buscar un carácter que se repite exactamente 4 veces
+            let caracterRepetidoCuarta = null;
+            for (const caracter in ocurrencias) {
+                if (ocurrencias[caracter] === 4) {
+                    caracterRepetidoCuarta = caracter;
+                    break;
+                }
+            }
+            
+            if (caracterRepetidoCuarta) {
+                console.log(`El carácter '${caracterRepetidoCuarta}' se repite 4 veces.`);
+
+                // Filtrar los caracteres que se repiten exactamente 3 veces, excluyendo el carácter de la cuarta
+                const caracteresRepetidos = Object.keys(ocurrencias).filter(caracter => caracter !== caracterRepetidoCuarta && ocurrencias[caracter] === 3);
+                
+                if (caracteresRepetidos.length === 2) {
+                    console.log(`Los caracteres '${caracteresRepetidos[0]}' y '${caracteresRepetidos[1]}' se repiten 3 veces.`);
+                } else if (caracteresRepetidos.length === 1) {
+                    console.log(`El carácter '${caracteresRepetidos[0]}' se repite 3 veces.`);
+                } else {
+                    console.log('No se encontraron dos caracteres que se repitan 3 veces.');
+                }
+            } else {
+                console.log('No se encontró ningún carácter que se repita 4 veces.');
+            }
+
         }
-
-       
-
     }, [playerOn]);
 
+
+      
     return (
         <div>
             <Cards
